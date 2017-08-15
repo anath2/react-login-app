@@ -8,13 +8,13 @@ import RegisterForm from './RegisterForm';
 import ResetPassword from './ResetPassword';
 import Dashboard from './Dashboard';
 
-export default class App extends Component {  
-  
+export default class App extends Component {
+
   // Find a method to check if the state is not loggedIn 
-    // Redirect to login page
+  // Redirect to login page
 
   // Pass the authentication function as prop to login component.   
-  
+
   state = {
     authenticationError: false,
     registerError: {}
@@ -22,63 +22,63 @@ export default class App extends Component {
 
   register = (email, username, password1, password2) => {
     // Reset the error object
-    this.setState({registerError: {}})
-    
-    if(email === "") {
+    this.setState({ registerError: {} })
+
+    if (email === "") {
       this.setState((prevState) => (
         {
-          registerError: Object.assign({}, prevState.registerError, {"email": "empty"})
+          registerError: Object.assign({}, prevState.registerError, { "email": "empty" })
         }
       ))
     }
 
-    if(username === "") {
+    if (username === "") {
       this.setState((prevState) => (
         {
-          registerError: Object.assign({}, prevState.registerError, {"username": "empty"})
+          registerError: Object.assign({}, prevState.registerError, { "username": "empty" })
         }
       ))
     }
 
-    if(password1 === "") {
+    if (password1 === "") {
       this.setState((prevState) => (
         {
-          registerError: Object.assign({}, prevState.registerError, {"password": "empty"})
+          registerError: Object.assign({}, prevState.registerError, { "password": "empty" })
         }
       ))
     }
 
-    if(Auth['emails'].indexOf(email) !== -1) {
+    if (Auth['emails'].indexOf(email) !== -1) {
       this.setState((prevState) => (
         {
-          registerError: Object.assign({}, prevState.registerError, {"email": "taken"})
+          registerError: Object.assign({}, prevState.registerError, { "email": "taken" })
         }
       ))
     }
 
-    if(Auth['users'].indexOf(username) !== -1) {
-     this.setState((prevState) => (
+    if (Auth['users'].indexOf(username) !== -1) {
+      this.setState((prevState) => (
         {
-          registerError: Object.assign({}, prevState.registerError, {"username": "taken"})
+          registerError: Object.assign({}, prevState.registerError, { "username": "taken" })
         }
-      )) 
+      ))
     }
 
-    if(password1 !== password2) {
-     this.setState((prevState) => (
+    if (password1 !== password2) {
+      this.setState((prevState) => (
         {
-          registerError: Object.assign({}, prevState.registerError, {"password": "mismatch"})
+          registerError: Object.assign({}, prevState.registerError, { "password": "mismatch" })
         }
-      )) 
+      ))
     }
   }
 
   authenticate = (username, password) => {
     // Call the authentication function
-    if( Auth['users'].indexOf(username) !== -1 && Auth['password'].indexOf(password) !== -1) {
-      this.setState({authenticationError: false})
+    if (Auth['users'].indexOf(username) !== -1 && Auth['password'].indexOf(password) !== -1) {
+      this.setState({ authenticationError: false })
     } else {
-      this.setState({authenticationError: true})
+      this.setState({ authenticationError: true })
     }
   }
 
@@ -87,21 +87,21 @@ export default class App extends Component {
   }
 
   render() {
-    
+
     return (
       <div className="wrapper">
         <Header />
         {
-          !this.state.isAuthenticated ? 
+          !this.state.isAuthenticated ?
             <Redirect from="/" to="/login" />
-          :
+            :
             <Redirect from="/" to="/dashboard" />
         }
-        
+
         <Switch>
-          <Route exact path="/login" render={({ history }) => <LoginForm onSubmit={this.authenticate} history={history} authenticationError={this.state.authenticationError}/>}/>  
-          <Route path="/dashboard" render={({ history }) => <Dashboard onSubmit={this.signOut} history={history} />} />                    
-          <Route path="/register"  render={({history}) => <RegisterForm onSubmit={this.register} history={history} registerError={this.state.registerError}/>}/>
+          <Route exact path="/login" render={({ history }) => <LoginForm onSubmit={this.authenticate} history={history} authenticationError={this.state.authenticationError} />} />
+          <Route path="/dashboard" render={({ history }) => <Dashboard onSubmit={this.signOut} history={history} />} />
+          <Route path="/register" render={({ history }) => <RegisterForm onSubmit={this.register} history={history} registerError={this.state.registerError} />} />
           <Route path="/reset" component={ResetPassword} />
         </Switch>
       </div>
