@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
+import Auth from '../utilities/authentication'
 import Header from './Header';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
@@ -14,22 +15,75 @@ export default class App extends Component {
 
   // Pass the authentication function as prop to login component.   
   
-  state = {isAuthenticated: false}
-
-  
-
-  authenticate = (e) => {
-    e.preventDefault();
-    // Call the authentication function
-    //alert("I am here")
-    this.setState({isAuthenticated: true})
+  state = {
+    authenticationError: false,
+    registerError: {}
   }
-  
+
+  register = (email, username, password1, password2) => {
+    // Reset the error object
+    this.setState({registerError: {}})
+    
+    if(email === "") {
+      this.setState((prevState) => (
+        {
+          registerError: Object.assign({}, prevState.registerError, {"email": "empty"})
+        }
+      ))
+    }
+
+    if(username === "") {
+      this.setState((prevState) => (
+        {
+          registerError: Object.assign({}, prevState.registerError, {"username": "empty"})
+        }
+      ))
+    }
+
+    if(password1 === "") {
+      this.setState((prevState) => (
+        {
+          registerError: Object.assign({}, prevState.registerError, {"password": "empty"})
+        }
+      ))
+    }
+
+    if(Auth['emails'].indexOf(email) !== -1) {
+      this.setState((prevState) => (
+        {
+          registerError: Object.assign({}, prevState.registerError, {"email": "taken"})
+        }
+      ))
+    }
+
+    if(Auth['users'].indexOf(username) !== -1) {
+     this.setState((prevState) => (
+        {
+          registerError: Object.assign({}, prevState.registerError, {"username": "taken"})
+        }
+      )) 
+    }
+
+    if(password1 !== password2) {
+     this.setState((prevState) => (
+        {
+          registerError: Object.assign({}, prevState.registerError, {"password": "mismatch"})
+        }
+      )) 
+    }
+  }
+
+  authenticate = (username, password) => {
+    // Call the authentication function
+    if( Auth['users'].indexOf(username) !== -1 && Auth['password'].indexOf(password) !== -1) {
+      this.setState({authenticationError: false})
+    } else {
+      this.setState({authenticationError: true})
+    }
+  }
+
   signOut = (e) => {
     e.preventDefault()
-    // Call the close session and redirect function
-    this.setState({isAuthenticated: false})
-
   }
 
   render() {
@@ -43,13 +97,11 @@ export default class App extends Component {
           :
             <Redirect from="/" to="/dashboard" />
         }
-        {
-          
-        }
+        
         <Switch>
-          <Route exact path="/login" render={({ history }) => <LoginForm onSubmit={this.authenticate} history={history} />}/>  
+          <Route exact path="/login" render={({ history }) => <LoginForm onSubmit={this.authenticate} history={history} authenticationError={this.state.authenticationError}/>}/>  
           <Route path="/dashboard" render={({ history }) => <Dashboard onSubmit={this.signOut} history={history} />} />                    
-          <Route path="/register" component={RegisterForm} />
+          <Route path="/register"  render={({history}) => <RegisterForm onSubmit={this.register} history={history} registerError={this.state.registerError}/>}/>
           <Route path="/reset" component={ResetPassword} />
         </Switch>
       </div>
