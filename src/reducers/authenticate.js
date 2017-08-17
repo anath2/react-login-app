@@ -1,6 +1,6 @@
-import Auth from '../utilities/authenication'
+import Auth from '../utilities/authentication'
 
-const authenticate = (state = { "error": null }, action) => {
+export default authenticate = (state = { "error": null, "authenticated": false }, action) => {
     switch (action.type) {
         case "LOGIN":
             if (Auth.users.indexOf(action.username) !== -1 && Auth.password.indexOf(action.password) !== -1) {
@@ -19,3 +19,4 @@ const authenticate = (state = { "error": null }, action) => {
 }
 
 // TODO : TEST THE REDUCER
+

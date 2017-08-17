@@ -37,6 +37,8 @@ export const validate = (email, username, password1, password2) => {
         result = { "errors": { ...results.errors, "password2": "mismatch" }, "success": false }
     }
 
+// CHECK THE ERROR OBJECT
+
     if (Object.keys(result).length === 0) {
         return { "success": true, "errror": {} }
     }
