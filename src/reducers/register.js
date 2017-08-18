@@ -1,17 +1,12 @@
-import validate from '../utilities/validation';
+import { validate } from '../utilities/validation';
 
-const register = (state = { "error": null }, action) => {
+export const register = (action, state = { "error": {} }) => {
     switch (action.type) {
         case 'REGISTER':
             let result = validate(action.email, action.username, action.password1, action.password2);
-            if (validate(result.success)) {
-                return { ...state, success: true }
-            }
-            else {
-                return { ...result.error, success: false }
-            }
+            return result
         default:
-            return { "error": "unknown", success: false }
+            return { "errors": "unknown", success: false }
     }
 }
 

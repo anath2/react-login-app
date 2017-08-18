@@ -1,6 +1,6 @@
-import Auth from './authentication';
+import { Auth } from './authentication';
 export const validate = (email, username, password1, password2) => {
-    result = {};
+    let result = {};
     if (Auth.emails.indexOf(email) !== -1) {
         result = { "errors": { "email": "taken" }, "success": false }
     }
@@ -9,7 +9,7 @@ export const validate = (email, username, password1, password2) => {
         result = { "errors": { "email": "empty" }, "success": false }
     }
 
-    if (/[a-z0-9]+@[a-z0-9]+.com/.test(email) === false) {
+    if (/[a-z0-9]+@[a-z0-9]+.com/.test(email) === false && email !== "") {
         result = { "errors": { "email": "invalid" }, "success": false }
     }
 
@@ -17,30 +17,30 @@ export const validate = (email, username, password1, password2) => {
         result = { "errors": { ...result.errors, "username": "taken" }, "success": false }
     }
 
-    if (email === "") {
-        result = { "errors": { ...results.errors, "username": "empty" }, "success": false }
+    if (username === "") {
+        result = { "errors": { ...result.errors, "username": "empty" }, "success": false }
     }
 
-    if (/\s/.test(username) === true) {
-        result = { "errors": { ...results.errors, "username": "invalid" }, "success": false }
+    if (/\s/.test(username) === true && username !== "") {
+        result = { "errors": { ...result.errors, "username": "invalid" }, "success": false }
     }
 
     if (password1 === "") {
-        result = { "errors": { ...results.errors, "password1": "empty" }, "success": false }
+        result = { "errors": { ...result.errors, "password1": "empty" }, "success": false }
     }
 
     if (password2 === "") {
-        result = { "errors": { ...results.errors, "password2": "empty" }, "success": false }
+        result = { "errors": { ...result.errors, "password2": "empty" }, "success": false }
     }
 
     if (password1 !== password2) {
-        result = { "errors": { ...results.errors, "password2": "mismatch" }, "success": false }
+        result = { "errors": { ...result.errors, "password2": "mismatch" }, "success": false }
     }
 
 // CHECK THE ERROR OBJECT
 
     if (Object.keys(result).length === 0) {
-        return { "success": true, "errror": {} }
+        return { "success": true, "errors": {} }
     }
     else {
         return result;

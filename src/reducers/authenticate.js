@@ -1,4 +1,4 @@
-import Auth from '../utilities/authentication'
+import { Auth } from '../utilities/authentication'
 
 export const authenticate = (action, state = { "error": null, "authenticated": false }) => {
     switch (action.type) {

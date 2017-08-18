@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-import Auth from '../utilities/authentication'
+import { Auth } from '../utilities/authentication'
 import Header from './Header';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
