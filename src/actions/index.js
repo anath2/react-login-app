@@ -6,6 +6,12 @@ export const login = (username, password) => {
     }
 }
 
+export const logout = () => {
+    return {
+        type: "LOGOUT"
+    }
+}
+
 export const register = (email, username, password) => {
     return {
         type: "REGISTER",
@@ -15,14 +21,3 @@ export const register = (email, username, password) => {
     }
 }
 
-export const logout = () => {
-    return {
-        type: "LOGOUT"
-    }
-}
-
-export const authenticationError = () => {
-    return {
-        type: "AUTHENTICATION_ERROR"
-    }
-}
