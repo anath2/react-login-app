@@ -1,4 +1,4 @@
-import  { register } from './register';
+import register from './register';
 
 let testCases = [
     {
@@ -31,9 +31,9 @@ let results = [
 ]
 
 test("Registration should be successful", () => {
-    expect(register(testCases[0])).toEqual(results[0]);
+    expect(register({ "error": {} },testCases[0])).toEqual(results[0]);
 })
 
 test("Unknown action", () => {
-    expect(register(testCases[1])).toEqual(results[1]);
+    expect(register({ "error": {} },testCases[1])).toEqual(results[1]);
 })

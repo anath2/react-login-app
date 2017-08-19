@@ -1,11 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { login, logout } from '../actions'
+import Proptypes from 'prop-types'
 
 const LoginForm = ({ error, onSubmit }) => { return (
   <div className="wrapper">
     <h3 className="heading"> Account login </h3>
-    <form onSubmit="onSubmit" >
+    { error === "AUTH_ERROR" && 
+      <div className="error"> Authentication error </div>
+    }
+    <form onSubmit={ onSubmit } >
       <input 
         className="text"
         placeholder="Username or email"
@@ -24,5 +26,9 @@ const LoginForm = ({ error, onSubmit }) => { return (
 )}
 
 // TODO: Proptypes declarations
+LoginForm.propTypes = {
+  error: Proptypes.string.isRequired,
+  onSubmit: Proptypes.func.isRequired
+}
 
 export default LoginForm

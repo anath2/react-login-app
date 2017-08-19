@@ -1,6 +1,6 @@
 import { validate } from '../utilities/validation';
 
-export const register = (action, state = { "error": {} }) => {
+export const register = (state = { "error": {} }, action) => {
     switch (action.type) {
         case 'REGISTER':
             let result = validate(action.email, action.username, action.password1, action.password2);
@@ -10,4 +10,4 @@ export const register = (action, state = { "error": {} }) => {
     }
 }
 
-// TODO VALIDATE AND TEST THE REDUCER
+export default register
