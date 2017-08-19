@@ -38,6 +38,13 @@ body {
     border-radius: 6px;
 }
 
+.error-message {
+  text-align: left;
+  color: #ff4d4d;
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
 .heading {
   font-size: 24px;
   text-transform: uppercase;

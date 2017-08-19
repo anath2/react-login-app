@@ -1,40 +1,52 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import TextField from './TextField';
 
-const RegisterForm = ({ error, onSubmit }) => { 
+const RegisterForm = ({ errors, onSubmit }) => { 
   
   return (
-  <div className="wrapper">
-    <h3 className="heading"> Create an account </h3>        
-    <form className="form RegisterForm" onSubmit={onSubmit}>
-      <TextField 
-        type="email"
-        name="email"
-        placeholder="email addres"
-      />
-      <TextField 
-        type="text"
-        name="username"
-        placeholder="username"
-      />
-      <TextField 
-        type="password"
-        name="password1"
-        placeholder="password"
-      />
-      <TextField 
-        type="password"
-        name="password2"
-        placeholder="retype password"
-      />
-      <button className="button" type="submit"> Register </button>
-    </form>
-    <hr className="hr" />
-    <a className="link" href="/login"> Already a member? Click to login </a>
-  </div>
-)} 
+    <div className="wrapper">
+      <h3 className="heading"> Create an account </h3>        
+      <form className="form RegisterForm" onSubmit={ onSubmit} >
+        
+        <TextField 
+          type="email"
+          name="email"
+          placeholder="email addres"
+          error={errors.email}
+        />
+        <TextField 
+          type="text"
+          name="username"
+          placeholder="username"
+          error={errors.username}
+        />
+        <TextField 
+          type="password"
+          name="password1"
+          placeholder="password"
+          error={errors.password1}
+        />
+        <TextField 
+          type="password"
+          name="password2"
+          placeholder="retype password"
+          error={errors.password2}
+        />
+        <button className="button" type="submit"> Register </button>
+      </form>
+      <hr className="hr" />
+      <a className="link" href="/login"> Already a member? Click to login </a>
+    </div>
+  )
+} 
 
-// TODO : declare proptypes
+// TODO : declare proptypes for the error object
+
+RegisterForm.propTypes = {
+  errors: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired
+}
 
 export default RegisterForm

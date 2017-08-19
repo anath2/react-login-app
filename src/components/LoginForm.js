@@ -1,5 +1,5 @@
 import React from 'react'
-import Proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const LoginForm = ({ error, onSubmit }) => { return (
   <div className="wrapper">
@@ -25,10 +25,9 @@ const LoginForm = ({ error, onSubmit }) => { return (
   </div>
 )}
 
-// TODO: Proptypes declarations
 LoginForm.propTypes = {
-  error: Proptypes.string.isRequired,
-  onSubmit: Proptypes.func.isRequired
+  error: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired
 }
 
 export default LoginForm

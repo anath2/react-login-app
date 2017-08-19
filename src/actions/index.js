@@ -12,12 +12,13 @@ export const logout = () => {
     }
 }
 
-export const register = (email, username, password) => {
+export const register = (email, username, password1, password2) => {
     return {
         type: "REGISTER",
         email,
         username,
-        password,
+        password1,
+        password2
     }
 }
 

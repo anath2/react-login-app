@@ -1,12 +1,20 @@
 import { validate } from '../utilities/validation';
 
-export const register = (state = { "error": {} }, action) => {
+export const register = (state = { errors: {} }, action) => {
     switch (action.type) {
         case 'REGISTER':
-            let result = validate(action.email, action.username, action.password1, action.password2);
-            return result
+            // validation function returns an error object with Field - Error as key value pair
+            // It returns an empty object if inputs are valid
+            let errors = validate(action.email, action.username, action.password1, action.password2);
+            // Check the error object
+            if (Object.keys(errors).length === 0) {
+                return { errors: { ...errors }, success: true }
+            }
+            else {
+                return { errors: { ...errors }, success: false}
+            }
         default:
-            return { "errors": "unknown", success: false }
+            return { errors: {}, success: false }
     }
 }
 
