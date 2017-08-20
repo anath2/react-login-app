@@ -1,7 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import TextField from './TextField';
+import TextField from './TextField'
+import Link from '../containers/Link'
 
 const RegisterForm = ({ errors, onSubmit }) => { 
   
@@ -37,7 +38,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
         <button className="button" type="submit"> Register </button>
       </form>
       <hr className="hr" />
-      <a className="link" href="/login"> Already a member? Click to login </a>
+      <Link target="login"> Already a member? Login </Link>
     </div>
   )
 } 
