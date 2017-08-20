@@ -37,11 +37,11 @@ let usernameInvalid = [
 
 
 let results = [
-    {success: true, errors: {}},
-    {success: false, errors: {email: "taken"}},
-    {success: false, errors: {email: "empty"}},
-    {success: false, errors: {email: "invalid"}},
-    {success: false, errors: {email: "invalid", username: "invalid"}}
+    {},
+    {email: "TAKEN"},
+    {email: "EMPTY"},
+    {email: "INVALID"},
+    {email: "INVALID", username: "INVALID"}
 ]
 
 test("Valid values", () => {

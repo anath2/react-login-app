@@ -25,7 +25,7 @@ let results = [
     }, 
 
     {
-        "errors": "unknown",
+        "errors": {},
         "success": false
     }
 ]
