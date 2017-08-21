@@ -6,7 +6,7 @@ const TextField = ({error, type, name, placeholder}) => {
         email: {
             TAKEN: "email already in use",
             EMPTY: "email empty",
-            INVALID: "please enter a vaild email address"
+            INVALID: "enter a vaild email address"
         },
         username: {
             TAKEN: "username already in use",
