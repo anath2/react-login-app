@@ -1,17 +1,23 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, Redirect } from 'react-router-dom'
 
 import LoginContainer from '../containers/LoginContainer'
 import RegisterContainer from '../containers/RegisterContainer'
 import Header from './Header';
 
-const App = () => { 
+const App = ({ authenticated }) => { 
 
   return (
   <div className="wrapper">
     <Header />
+    {
+      !authenticated && <Redirect to={{ 
+        pathname: '/login'
+      }} /> 
+    }
     <Route path="/login" component={LoginContainer} />
     <Route path="/register" component={RegisterContainer} />
+   
   </div>
 )};
 
