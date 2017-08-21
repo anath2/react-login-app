@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
-import Link from '../containers/Link'
 
 const LoginForm = ({ error, onSubmit }) => { return (
   <div className="wrapper">
@@ -22,7 +22,7 @@ const LoginForm = ({ error, onSubmit }) => { return (
       <button className="button" type="submit"> Login </button>
     </form>
     <hr className="hr" />
-    <Link target="register"> New at httpeace? Click to register </Link>
+    <Link to="/register"> New at httpeace? Click to register </Link>
   </div>
 )}
 

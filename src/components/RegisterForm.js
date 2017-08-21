@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import TextField from './TextField'
-import Link from '../containers/Link'
 
 const RegisterForm = ({ errors, onSubmit }) => { 
   
@@ -38,7 +38,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
         <button className="button" type="submit"> Register </button>
       </form>
       <hr className="hr" />
-      <Link target="login"> Already a member? Login </Link>
+      <Link to="/login"> Already a member? Login </Link>
     </div>
   )
 } 

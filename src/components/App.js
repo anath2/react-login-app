@@ -1,20 +1,17 @@
 import React from 'react'
+import { Route } from 'react-router'
 
 import LoginContainer from '../containers/LoginContainer'
 import RegisterContainer from '../containers/RegisterContainer'
 import Header from './Header';
 
-const App = ({ showContent }) => { 
+const App = () => { 
 
   return (
   <div className="wrapper">
     <Header />
-    {
-      showContent === 'login' && <LoginContainer /> 
-    }
-    {
-      showContent === 'register' && <RegisterContainer />
-    }
+    <Route path="/login" component={LoginContainer} />
+    <Route path="/register" component={RegisterContainer} />
   </div>
 )};
 

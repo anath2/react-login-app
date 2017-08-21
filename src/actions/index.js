@@ -21,10 +21,3 @@ export const register = (email, username, password1, password2) => {
         password2
     }
 }
-
-export const showContent = (content) => {
-    return {
-        type: 'SHOW_CONTENT',
-        content
-    }
-}
