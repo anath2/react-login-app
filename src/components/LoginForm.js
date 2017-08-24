@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
-import Divider from 'material-ui/Divider'
 
 const paperStyle = {    
     maxWidth: 400,
