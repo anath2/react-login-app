@@ -74,8 +74,10 @@ const RegisterForm = ({ errors, onSubmit }) => {
           floatingLabelFixed={true}
           floatingLabelText="email"
           fullWidth={true}
-          errorText={typeof errors.email !== undefined && "Email " + errorMessage[errors.email]}
+          errorText={typeof errors.email !== "undefined" && "Email " + errorMessage[errors.email]}
+          // TODO: Figure out why undefined needs to be a string 
         />
+
         <TextField 
           style={textStyle}
           type="username"
@@ -83,7 +85,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
           floatingLabelFixed={true}
           floatingLabelText="username"
           fullWidth={true}
-          errorText={typeof errors.username !== undefined &&  "Username " + errorMessage[errors.username]}
+          errorText={typeof errors.username !== "undefined" &&  "Username " + errorMessage[errors.username]}
         />
         <TextField 
           style={textStyle}
@@ -92,7 +94,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
           floatingLabelFixed={true}
           floatingLabelText="password"
           fullWidth={true}
-          errorText={typeof errors.password1 !== undefined && "Password " + errorMessage[errors.password1]}
+          errorText={typeof errors.password1 !== "undefined" && "Password " + errorMessage[errors.password1]}
         />
         <TextField 
           style={textStyle}
@@ -101,7 +103,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
           floatingLabelFixed={true}
           floatingLabelText="retype password"
           fullWidth={true}
-          errorText={typeof errors.password2 !== undefined && "Field " + errorMessage[errors.password2]}
+          errorText={typeof errors.password2 !== "undefined" && "Passwords do not match"}
         />
         <RaisedButton 
           label="Register"
