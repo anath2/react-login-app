@@ -69,12 +69,12 @@ const RegisterForm = ({ errors, onSubmit }) => {
         
         <TextField 
           style={textStyle}
-          type="email"
+          type="text"
           name="email"
           floatingLabelFixed={true}
           floatingLabelText="email"
           fullWidth={true}
-          errorText={errors.email !== undefined && "Email " + errorMessage[errors.email]}
+          errorText={typeof errors.email !== undefined && "Email " + errorMessage[errors.email]}
         />
         <TextField 
           style={textStyle}
@@ -83,7 +83,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
           floatingLabelFixed={true}
           floatingLabelText="username"
           fullWidth={true}
-          errorText={errors.username !== undefined &&  "Username " + errorMessage[errors.username]}
+          errorText={typeof errors.username !== undefined &&  "Username " + errorMessage[errors.username]}
         />
         <TextField 
           style={textStyle}
@@ -92,7 +92,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
           floatingLabelFixed={true}
           floatingLabelText="password"
           fullWidth={true}
-          errorText={errors.password1 !== undefined && "Password " + errorMessage[errors.password1]}
+          errorText={typeof errors.password1 !== undefined && "Password " + errorMessage[errors.password1]}
         />
         <TextField 
           style={textStyle}
@@ -101,7 +101,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
           floatingLabelFixed={true}
           floatingLabelText="retype password"
           fullWidth={true}
-          errorText={errors.password2 !== undefined && "Field " + errorMessage[errors.password2]}
+          errorText={typeof errors.password2 !== undefined && "Field " + errorMessage[errors.password2]}
         />
         <RaisedButton 
           label="Register"
@@ -116,6 +116,7 @@ const RegisterForm = ({ errors, onSubmit }) => {
 } 
 
 // TODO : declare proptypes for the error object
+// TODO : reset the error object on navigation
 // TODO : Clean up the code
 
 RegisterForm.propTypes = {
